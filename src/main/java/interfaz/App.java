@@ -2,6 +2,8 @@ package interfaz;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -9,6 +11,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+
+import modelo.DefaultSubstrates;
+import modelo.Simulator;
+import modelo.Substrate;
 
 public class App extends JFrame {
 
@@ -24,10 +30,18 @@ public class App extends JFrame {
 	private JScrollPane requestsScrollPane;
 	private JScrollPane substratesScrollPane;
 	private JTable substratesTable;
+	private SubstratesTableModel substratesTableModel;
 
-	// private List<Substrate> substrates;
+	private Simulator simulator;
 
 	public App() {
+
+		simulator = new Simulator();
+		simulator.addSubstrate(DefaultSubstrates
+				.constructDefaultSubstrate("Red1"));
+		simulator.addSubstrate(DefaultSubstrates
+				.constructDefaultSubstrate("Red2"));
+
 		this.setSize(1000, 600);
 		this.setTitle("Simulador");
 		this.setLocationRelativeTo(null);
@@ -67,7 +81,7 @@ public class App extends JFrame {
 			simulatorTabbedPane = new JTabbedPane();
 			simulatorTabbedPane.setTabPlacement(JTabbedPane.TOP);
 			simulatorTabbedPane.setPreferredSize(new Dimension(250, 0));
-			simulatorTabbedPane.addTab("Solicitudes", null,
+			simulatorTabbedPane.addTab("Peticiones", null,
 					getRequestsScrollPane(), null);
 			simulatorTabbedPane.addTab("Redes", null,
 					getSubstratesScrollPane(), null);
@@ -89,7 +103,7 @@ public class App extends JFrame {
 		if (substratesScrollPane == null) {
 			substratesScrollPane = new JScrollPane();
 			substratesScrollPane.setName("");
-			// substratesScrollPane.setViewportView(getSubstratesTable());
+			substratesScrollPane.setViewportView(getSubstratesTable());
 		}
 		return substratesScrollPane;
 	}
@@ -100,5 +114,29 @@ public class App extends JFrame {
 			// requestsScrollPane.setViewportView(getRequestsTable());
 		}
 		return requestsScrollPane;
+	}
+
+	private JTable getSubstratesTable() {
+		if (substratesTable == null) {
+			String col[] = { "Nombre" };
+			substratesTableModel = new SubstratesTableModel(col, 0);
+			for (Substrate s : simulator.getSubstrates()) {
+				substratesTableModel.addRow(new Object[] { s.getId() });
+			}
+			substratesTable = new JTable(substratesTableModel);
+
+			substratesTable.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					if (e.getClickCount() == 2) {
+						JTable target = (JTable) e.getSource();
+						int row = target.getSelectedRow();
+						System.out.println("\n" + simulator.getSubstrates().get(row).getId());
+
+					}
+				}
+			});
+
+		}
+		return substratesTable;
 	}
 }
