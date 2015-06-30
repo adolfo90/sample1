@@ -42,7 +42,7 @@ public class App extends JFrame {
 		simulator.addSubstrate(DefaultSubstrates
 				.constructDefaultSubstrate("Red2"));
 
-		this.setSize(1000, 600);
+		this.setSize(1100, 600);
 		this.setTitle("Simulador");
 		this.setLocationRelativeTo(null);
 		this.setContentPane(getSimulatorContentPane());
@@ -80,7 +80,7 @@ public class App extends JFrame {
 		if (simulatorTabbedPane == null) {
 			simulatorTabbedPane = new JTabbedPane();
 			simulatorTabbedPane.setTabPlacement(JTabbedPane.TOP);
-			simulatorTabbedPane.setPreferredSize(new Dimension(250, 0));
+			simulatorTabbedPane.setPreferredSize(new Dimension(280, 0));
 			simulatorTabbedPane.addTab("Peticiones", null,
 					getRequestsScrollPane(), null);
 			simulatorTabbedPane.addTab("Redes", null,
