@@ -127,7 +127,7 @@ public class App extends JFrame {
 
 			substratesTable.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
-					if (e.getClickCount() == 2) {
+					if (e.getClickCount() == 1) {
 						JTable target = (JTable) e.getSource();
 						int row = target.getSelectedRow();
 						System.out.println("\n" + simulator.getSubstrates().get(row).getId());
