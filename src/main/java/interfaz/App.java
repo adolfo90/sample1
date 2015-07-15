@@ -1,7 +1,9 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -11,6 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.JToolBar;
 
 import modelo.DefaultSubstrates;
 import modelo.Simulator;
@@ -31,6 +34,7 @@ public class App extends JFrame {
 	private JScrollPane substratesScrollPane;
 	private JTable substratesTable;
 	private SubstratesTableModel substratesTableModel;
+	private JToolBar simulatorToolBar;
 
 	private Simulator simulator;
 
@@ -53,10 +57,19 @@ public class App extends JFrame {
 		if (simulatorContentPane == null) {
 			simulatorContentPane = new JPanel();
 			simulatorContentPane.setLayout(new BorderLayout());
+			simulatorContentPane.add(getSimulatorToolBar(), BorderLayout.NORTH);
 			simulatorContentPane.add(getSimulatorSplitPane(),
 					BorderLayout.CENTER);
 		}
 		return simulatorContentPane;
+	}
+
+	private JToolBar getSimulatorToolBar() {
+		if (simulatorToolBar == null) {
+			simulatorToolBar = new JToolBar();
+
+		}
+		return simulatorToolBar;
 	}
 
 	private JSplitPane getSimulatorSplitPane() {
@@ -81,10 +94,10 @@ public class App extends JFrame {
 			simulatorTabbedPane = new JTabbedPane();
 			simulatorTabbedPane.setTabPlacement(JTabbedPane.TOP);
 			simulatorTabbedPane.setPreferredSize(new Dimension(280, 0));
-			simulatorTabbedPane.addTab("Peticiones", null,
-					getRequestsScrollPane(), null);
 			simulatorTabbedPane.addTab("Redes", null,
 					getSubstratesScrollPane(), null);
+			simulatorTabbedPane.addTab("Peticiones", null,
+					getRequestsScrollPane(), null);
 			simulatorTabbedPane.addTab("Algoritmos", null,
 					getAlgorithmsScrollPane(), null);
 		}
@@ -130,7 +143,11 @@ public class App extends JFrame {
 					if (e.getClickCount() == 1) {
 						JTable target = (JTable) e.getSource();
 						int row = target.getSelectedRow();
-						System.out.println("\n" + simulator.getSubstrates().get(row).getId());
+						System.out.println("\n"
+								+ simulator.getSubstrates().get(row).getId());
+						
+						Substrate s = simulator.getSubstrates().get(row);
+
 
 					}
 				}
