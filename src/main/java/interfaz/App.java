@@ -1,10 +1,12 @@
 package interfaz;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -49,8 +51,7 @@ public class App extends JFrame {
 				.constructDefaultSubstrate("Red1"));
 		simulator.addSubstrate(DefaultSubstrates
 				.constructDefaultSubstrate("Red2"));
-
-		this.setSize(1100, 600);
+		this.setSize(1200, 700);
 		this.setTitle("Simulador");
 		this.setLocationRelativeTo(null);
 		this.setContentPane(getSimulatorContentPane());
@@ -147,15 +148,14 @@ public class App extends JFrame {
 					if (e.getClickCount() == 1) {
 						JTable target = (JTable) e.getSource();
 						int row = target.getSelectedRow();
-						// System.out.println("\n"
-						// + simulator.getSubstrates().get(row).getId());
-
 						Substrate s = simulator.getSubstrates().get(row);
 
 						int index = graphViewerTabbedPane.indexOfTab(s.getId());
 						if (index == -1) {
 							
+							GraphViewerPanel gv = getGraphViewerPanel(s);
 							JPanel pane = new JPanel(new BorderLayout());
+							pane.add(gv, BorderLayout.CENTER);
 							graphViewerTabbedPane.addTab(s.getId(), null, pane, null);
 							graphViewerTabbedPane.setSelectedComponent(pane);
 							
@@ -174,7 +174,10 @@ public class App extends JFrame {
 	private GraphViewerPanel getGraphViewerPanel(Network net) {
 		
 		Layout<Node, Link> layout = new FRLayout2<Node, Link>(net.getGraph());
+		
 		graphViewerPanel = new GraphViewerPanel(layout, net.getNodeFactory(), net.getLinkFactory());
+		graphViewerPanel.setBackground(Color.WHITE);
+
 		
 		return graphViewerPanel; 
 	}

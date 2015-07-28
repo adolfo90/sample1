@@ -1,10 +1,12 @@
 package modelo;
 
+import interfaz.Icons;
+
+
 public class SubstrateServer extends Node{
 
 	public SubstrateServer(int id) {
 		super(id);
-		// TODO Auto-generated constructor stub
-	}
+		this.icon = Icons.SERVER;	}
 
 }
