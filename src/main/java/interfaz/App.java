@@ -49,8 +49,6 @@ public class App extends JFrame {
 		simulator = new Simulator();
 		simulator.addSubstrate(DefaultSubstrates
 				.constructDefaultSubstrate("Red1"));
-		simulator.addSubstrate(DefaultSubstrates
-				.constructDefaultSubstrate("Red2"));
 		this.setSize(1200, 700);
 		this.setTitle("Simulador");
 		this.setLocationRelativeTo(null);
@@ -176,7 +174,7 @@ public class App extends JFrame {
 		Layout<Node, Link> layout = new FRLayout2<Node, Link>(net.getGraph());
 		
 		graphViewerPanel = new GraphViewerPanel(layout, net.getNodeFactory(), net.getLinkFactory());
-		graphViewerPanel.setBackground(Color.WHITE);
+		//graphViewerPanel.setBackground(Color.WHITE);
 
 		
 		return graphViewerPanel; 
