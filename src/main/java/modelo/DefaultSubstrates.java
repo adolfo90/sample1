@@ -26,6 +26,8 @@ public class DefaultSubstrates {
 		
 		SubstrateRouter nodo8 = new SubstrateRouter(8);
 		
+		SubstrateRouter nodo10 = new SubstrateRouter(10);
+		
 		SubstrateServer nodo9 = new SubstrateServer(59);
 		
 		SubstrateLink enlace1 = new SubstrateLink(0,100);
@@ -38,6 +40,7 @@ public class DefaultSubstrates {
 		SubstrateLink enlace8 = new SubstrateLink(0,100);
 		SubstrateLink enlace9 = new SubstrateLink(0,100);
 		SubstrateLink enlace10 = new SubstrateLink(0,100);
+		SubstrateLink enlace11 = new SubstrateLink(0,100);		
 		
 		substrate.getGraph().addEdge(enlace1, new Pair<Node>(nodo1, nodo2), EdgeType.UNDIRECTED);
 		substrate.getGraph().addEdge(enlace8, new Pair<Node>(nodo3, nodo6), EdgeType.UNDIRECTED);
@@ -49,6 +52,7 @@ public class DefaultSubstrates {
 		substrate.getGraph().addEdge(enlace7, new Pair<Node>(nodo8, nodo2), EdgeType.UNDIRECTED);
 		substrate.getGraph().addEdge(enlace9, new Pair<Node>(nodo8, nodo5), EdgeType.UNDIRECTED);
 		substrate.getGraph().addEdge(enlace10, new Pair<Node>(nodo8, nodo7), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace11, new Pair<Node>(nodo8, nodo10), EdgeType.UNDIRECTED);
 		
 
 		return substrate;

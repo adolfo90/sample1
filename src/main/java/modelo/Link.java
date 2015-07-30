@@ -10,4 +10,22 @@ public class Link {
 		this.bandwidth = bandwidth;
 
 	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getBandwidth() {
+		return bandwidth;
+	}
+
+	public void setBandwidth(int bandwidth) {
+		this.bandwidth = bandwidth;
+	}
+	
+	
 }

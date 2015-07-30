@@ -11,6 +11,7 @@ import org.apache.commons.collections15.Transformer;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.EditingModalGraphMouse;
+import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.EdgeShape;
 import edu.uci.ics.jung.visualization.decorators.PickableVertexIconTransformer;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
@@ -45,7 +46,18 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 		        this.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 		        
 		        this.getRenderContext().setEdgeShapeTransformer(new EdgeShape.Line());
-		
+		        
+		        Transformer<Link, String> linkLabel = new Transformer<Link, String>() {
+				public String transform(Link l) {
+					return "" + l.getBandwidth();
+				}
+	        };
+	        this.getRenderContext().setEdgeLabelTransformer(linkLabel);
+		        
+		        gm = new EditingModalGraphMouse(this.getRenderContext(), nodeFactory, linkFactory);
+		        gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
+		        this.setGraphMouse(gm);
+		        
 		// TODO Auto-generated constructor stub
 	}
 
