@@ -4,6 +4,7 @@ import javax.swing.Icon;
 
 import modelo.Link;
 import modelo.Node;
+import modelo.SubstrateServer;
 
 import org.apache.commons.collections15.Factory;
 import org.apache.commons.collections15.Transformer;
@@ -31,8 +32,14 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 		
 		// Setup up icons for nodes
 				PickableVertexIconTransformer<Node> vertexIcon = new PickableVertexIconTransformer<Node>(getPickedVertexState(), null, null) {
-					public Icon transform(Node n) {						
-							return n.getIcon();						
+					public Icon transform(Node n) {	
+						
+							if (n instanceof SubstrateServer){
+								return Icons.SERVER;	
+							}else{
+								return Icons.ROUTER;
+							}
+												
 					}
 		        };
 		        this.getRenderContext().setVertexIconTransformer(vertexIcon);
