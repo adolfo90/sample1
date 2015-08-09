@@ -1,8 +1,8 @@
 package modelo;
 
-public class SubstrateLink extends Link {
+public class Enlace extends Link {
 
-	public SubstrateLink(int id, int bandwidth) {
+	public Enlace(int id, int bandwidth) {
 		super(id, bandwidth);
 		// TODO Auto-generated constructor stub
 	}

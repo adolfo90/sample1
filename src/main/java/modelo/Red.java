@@ -4,14 +4,14 @@ import org.apache.commons.collections15.Factory;
 
 import edu.uci.ics.jung.graph.Graph;
 
-public class Network {
+public class Red {
 
 	protected String id;
 	protected Graph<Node, Link> graph;
 	protected Factory nodeFactory;
 	protected Factory linkFactory;
 
-	public Network(String id) {
+	public Red(String id) {
 		this.id = id;
 		graph = new NetworkGraph();
 	}

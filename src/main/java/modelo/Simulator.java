@@ -5,22 +5,22 @@ import java.util.List;
 
 public class Simulator {
 
-	private List<Substrate> substrates;
+	private List<Red> substrates;
 
 	public Simulator() {
-		substrates = new ArrayList<Substrate>();
+		substrates = new ArrayList<Red>();
 
 	}
 
-	public List<Substrate> getSubstrates() {
+	public List<Red> getSubstrates() {
 		return substrates;
 	}
 
-	public void setSubstrates(List<Substrate> substrates) {
+	public void setSubstrates(List<Red> substrates) {
 		this.substrates = substrates;
 	}
 
-	public void addSubstrate(Substrate s) {
+	public void addSubstrate(Red s) {
 		this.substrates.add(s);
 	}
 

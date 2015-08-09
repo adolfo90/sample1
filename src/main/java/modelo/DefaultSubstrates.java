@@ -6,41 +6,40 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class DefaultSubstrates {
 
-	public static final Substrate constructDefaultSubstrate(String id) {
+	public static final Red constructDefaultSubstrate(String id) {
 
-		Substrate substrate = new Substrate(id);
+		Red substrate = new Red(id);
 
-		SubstrateServer nodo1 = new SubstrateServer(81);
+		NodoDataCenter nodo1 = new NodoDataCenter(81);
 
-		SubstrateRouter nodo2 = new SubstrateRouter(82);
+		NodoIntermedio nodo2 = new NodoIntermedio(82);
 		
-		SubstrateRouter nodo3 = new SubstrateRouter(83);
+		NodoIntermedio nodo3 = new NodoIntermedio(83);
 		
-		SubstrateRouter nodo4 = new SubstrateRouter(84);
+		NodoIntermedio nodo4 = new NodoIntermedio(84);
 		
-		SubstrateRouter nodo5 = new SubstrateRouter(55);
+		NodoIntermedio nodo5 = new NodoIntermedio(55);
 		
-		SubstrateRouter nodo6 = new SubstrateRouter(6);
+		NodoIntermedio nodo6 = new NodoIntermedio(6);
 		
-		SubstrateRouter nodo7 = new SubstrateRouter(7);
+		NodoIntermedio nodo7 = new NodoIntermedio(7);
 		
-		SubstrateRouter nodo8 = new SubstrateRouter(8);
+		NodoIntermedio nodo8 = new NodoIntermedio(8);
 		
-		SubstrateRouter nodo10 = new SubstrateRouter(10);
+		NodoIntermedio nodo10 = new NodoIntermedio(10);
 		
-		SubstrateServer nodo9 = new SubstrateServer(59);
+		NodoDataCenter nodo9 = new NodoDataCenter(59);
 		
-		SubstrateLink enlace1 = new SubstrateLink(0,100);
-		SubstrateLink enlace2 = new SubstrateLink(0,100);
-		SubstrateLink enlace3 = new SubstrateLink(0,100);
-		SubstrateLink enlace4 = new SubstrateLink(0,100);
-		SubstrateLink enlace5 = new SubstrateLink(0,100);
-		SubstrateLink enlace6 = new SubstrateLink(0,100);
-		SubstrateLink enlace7 = new SubstrateLink(0,100);
-		SubstrateLink enlace8 = new SubstrateLink(0,100);
-		SubstrateLink enlace9 = new SubstrateLink(0,100);
-		SubstrateLink enlace10 = new SubstrateLink(0,100);
-		SubstrateLink enlace11 = new SubstrateLink(0,100);		
+		Enlace enlace1 = new Enlace(0,100);
+		Enlace enlace2 = new Enlace(0,100);
+		Enlace enlace3 = new Enlace(0,400);
+		Enlace enlace4 = new Enlace(0,100);
+		Enlace enlace5 = new Enlace(0,200);
+		Enlace enlace6 = new Enlace(0,100);
+		Enlace enlace7 = new Enlace(0,100);
+		Enlace enlace8 = new Enlace(0,300);
+		Enlace enlace9 = new Enlace(0,100);
+		Enlace enlace10 = new Enlace(0,100);
 		
 		substrate.getGraph().addEdge(enlace1, new Pair<Node>(nodo1, nodo2), EdgeType.UNDIRECTED);
 		substrate.getGraph().addEdge(enlace8, new Pair<Node>(nodo3, nodo6), EdgeType.UNDIRECTED);
@@ -52,7 +51,6 @@ public class DefaultSubstrates {
 		substrate.getGraph().addEdge(enlace7, new Pair<Node>(nodo8, nodo2), EdgeType.UNDIRECTED);
 		substrate.getGraph().addEdge(enlace9, new Pair<Node>(nodo8, nodo5), EdgeType.UNDIRECTED);
 		substrate.getGraph().addEdge(enlace10, new Pair<Node>(nodo8, nodo7), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace11, new Pair<Node>(nodo8, nodo10), EdgeType.UNDIRECTED);
 		
 
 		return substrate;
