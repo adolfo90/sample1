@@ -7,7 +7,7 @@ import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
 import modelo.Enlace;
-import modelo.Node;
+import modelo.Nodo;
 import modelo.NodoDataCenter;
 
 import org.apache.commons.collections15.Factory;
@@ -20,7 +20,7 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.EdgeShape;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
-public class GraphViewerPanel extends VisualizationViewer<Node, Enlace> {
+public class GraphViewerPanel extends VisualizationViewer<Nodo, Enlace> {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Enlace> {
 	
 	EditingModalGraphMouse gm;
 
-	public GraphViewerPanel(Layout<Node, Enlace> layout, Factory nodeFactory,
+	public GraphViewerPanel(Layout<Nodo, Enlace> layout, Factory nodeFactory,
 			Factory linkFactory) {
 		super(layout);
 		
@@ -47,14 +47,14 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Enlace> {
 		        };*/
 		       // this.getRenderContext().setVertexIconTransformer(vertexIcon);
 		        
-		        Transformer<Node, String> vertexLabel = new Transformer<Node, String>() {
-					public String transform(Node n) {
+		        Transformer<Nodo, String> vertexLabel = new Transformer<Nodo, String>() {
+					public String transform(Nodo n) {
 						return "" + n.getId();
 					}
 		        };
 		        
-		        Transformer<Node, Paint> vertexPaint = new Transformer<Node, Paint>() {
-					public Paint transform(Node n) {
+		        Transformer<Nodo, Paint> vertexPaint = new Transformer<Nodo, Paint>() {
+					public Paint transform(Nodo n) {
 						if (n instanceof NodoDataCenter){
 							return Color.LIGHT_GRAY;	
 						}else{
@@ -62,8 +62,8 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Enlace> {
 						}
 					}
 		        };
-		        Transformer<Node, Shape> vertexShape = new Transformer<Node, Shape>() {
-					public Shape transform(Node n) {
+		        Transformer<Nodo, Shape> vertexShape = new Transformer<Nodo, Shape>() {
+					public Shape transform(Nodo n) {
 						if (n instanceof NodoDataCenter){
 							return new Rectangle(-20, -13, 40, 26);
 						}else{

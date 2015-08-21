@@ -17,7 +17,7 @@ import javax.swing.JToolBar;
 import modelo.DefaultSubstrates;
 import modelo.Enlace;
 import modelo.Red;
-import modelo.Node;
+import modelo.Nodo;
 import modelo.Simulator;
 import edu.uci.ics.jung.algorithms.layout.FRLayout2;
 import edu.uci.ics.jung.algorithms.layout.Layout;
@@ -169,7 +169,7 @@ public class App extends JFrame {
 	
 	private GraphViewerPanel getGraphViewerPanel(Red net) {
 		
-		Layout<Node, Enlace> layout = new FRLayout2<Node, Enlace>(net.getGraph());
+		Layout<Nodo, Enlace> layout = new FRLayout2<Nodo, Enlace>(net.getGraph());
 		
 		graphViewerPanel = new GraphViewerPanel(layout, net.getNodeFactory(), net.getLinkFactory());
 		graphViewerPanel.setBackground(Color.WHITE);

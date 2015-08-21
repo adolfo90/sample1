@@ -41,16 +41,16 @@ public class DefaultSubstrates {
 		Enlace enlace9 = new Enlace(0,100);
 		Enlace enlace10 = new Enlace(0,100);
 		
-		substrate.getGraph().addEdge(enlace1, new Pair<Node>(nodo1, nodo2), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace8, new Pair<Node>(nodo3, nodo6), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace2, new Pair<Node>(nodo7, nodo4), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace3, new Pair<Node>(nodo3, nodo2), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace4, new Pair<Node>(nodo5, nodo4), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace5, new Pair<Node>(nodo6, nodo8), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace6, new Pair<Node>(nodo9, nodo4), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace7, new Pair<Node>(nodo8, nodo2), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace9, new Pair<Node>(nodo8, nodo5), EdgeType.UNDIRECTED);
-		substrate.getGraph().addEdge(enlace10, new Pair<Node>(nodo8, nodo7), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace1, new Pair<Nodo>(nodo1, nodo2), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace8, new Pair<Nodo>(nodo3, nodo6), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace2, new Pair<Nodo>(nodo7, nodo4), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace3, new Pair<Nodo>(nodo3, nodo2), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace4, new Pair<Nodo>(nodo5, nodo4), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace5, new Pair<Nodo>(nodo6, nodo8), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace6, new Pair<Nodo>(nodo9, nodo4), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace7, new Pair<Nodo>(nodo8, nodo2), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace9, new Pair<Nodo>(nodo8, nodo5), EdgeType.UNDIRECTED);
+		substrate.getGraph().addEdge(enlace10, new Pair<Nodo>(nodo8, nodo7), EdgeType.UNDIRECTED);
 		
 
 		return substrate;
