@@ -4,8 +4,8 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.UndirectedGraph;
 
 
-public class NetworkGraph extends SparseMultigraph<Node, Link> implements
-		UndirectedGraph<Node, Link> {
+public class NetworkGraph extends SparseMultigraph<Node, Enlace> implements
+		UndirectedGraph<Node, Enlace> {
 
 	/**
 	 * 

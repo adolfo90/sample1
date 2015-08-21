@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
-import modelo.Link;
+import modelo.Enlace;
 import modelo.Node;
 import modelo.NodoDataCenter;
 
@@ -20,7 +20,7 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.EdgeShape;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
-public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
+public class GraphViewerPanel extends VisualizationViewer<Node, Enlace> {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 	
 	EditingModalGraphMouse gm;
 
-	public GraphViewerPanel(Layout<Node, Link> layout, Factory nodeFactory,
+	public GraphViewerPanel(Layout<Node, Enlace> layout, Factory nodeFactory,
 			Factory linkFactory) {
 		super(layout);
 		
@@ -79,8 +79,8 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 		        
 		        this.getRenderContext().setEdgeShapeTransformer(new EdgeShape.Line());
 		        
-		        Transformer<Link, String> linkLabel = new Transformer<Link, String>() {
-				public String transform(Link l) {
+		        Transformer<Enlace, String> linkLabel = new Transformer<Enlace, String>() {
+				public String transform(Enlace l) {
 					return "" + l.getBandwidth();
 				}
 	        };

@@ -6,9 +6,9 @@ import edu.uci.ics.jung.graph.util.Pair;
 
 public class DefaultSubstrates {
 
-	public static final Red constructDefaultSubstrate(String id) {
+	public static final Red constructDefault(String nombre) {
 
-		Red substrate = new Red(id);
+		Red substrate = new Red(nombre);
 
 		NodoDataCenter nodo1 = new NodoDataCenter(81);
 

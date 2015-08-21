@@ -15,7 +15,7 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 
 import modelo.DefaultSubstrates;
-import modelo.Link;
+import modelo.Enlace;
 import modelo.Red;
 import modelo.Node;
 import modelo.Simulator;
@@ -46,7 +46,7 @@ public class App extends JFrame {
 
 		simulator = new Simulator();
 		simulator.addSubstrate(DefaultSubstrates
-				.constructDefaultSubstrate("Red1"));
+				.constructDefault("Red1"));
 		this.setSize(1200, 700);
 		this.setTitle("Simulador");
 		this.setLocationRelativeTo(null);
@@ -169,7 +169,7 @@ public class App extends JFrame {
 	
 	private GraphViewerPanel getGraphViewerPanel(Red net) {
 		
-		Layout<Node, Link> layout = new FRLayout2<Node, Link>(net.getGraph());
+		Layout<Node, Enlace> layout = new FRLayout2<Node, Enlace>(net.getGraph());
 		
 		graphViewerPanel = new GraphViewerPanel(layout, net.getNodeFactory(), net.getLinkFactory());
 		graphViewerPanel.setBackground(Color.WHITE);

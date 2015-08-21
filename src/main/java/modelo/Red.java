@@ -7,7 +7,7 @@ import edu.uci.ics.jung.graph.Graph;
 public class Red {
 
 	protected String id;
-	protected Graph<Node, Link> graph;
+	protected Graph<Node, Enlace> graph;
 	protected Factory nodeFactory;
 	protected Factory linkFactory;
 
@@ -24,11 +24,11 @@ public class Red {
 		this.id = id;
 	}
 
-	public Graph<Node, Link> getGraph() {
+	public Graph<Node, Enlace> getGraph() {
 		return graph;
 	}
 
-	public void setGraph(Graph<Node, Link> graph) {
+	public void setGraph(Graph<Node, Enlace> graph) {
 		this.graph = graph;
 	}
 

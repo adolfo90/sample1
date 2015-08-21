@@ -1,10 +1,31 @@
 package modelo;
 
-public class Enlace extends Link {
+public class Enlace {
+
+	protected int id;
+	protected int bandwidth;
 
 	public Enlace(int id, int bandwidth) {
-		super(id, bandwidth);
-		// TODO Auto-generated constructor stub
+		this.id = id;
+		this.bandwidth = bandwidth;
+
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getBandwidth() {
+		return bandwidth;
+	}
+
+	public void setBandwidth(int bandwidth) {
+		this.bandwidth = bandwidth;
+	}
+	
+	
 }
