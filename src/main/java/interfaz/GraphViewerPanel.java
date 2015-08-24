@@ -6,8 +6,8 @@ import java.awt.Rectangle;
 import java.awt.Shape;
 import java.awt.geom.Ellipse2D;
 
-import modelo.Enlace;
-import modelo.Nodo;
+import modelo.Link;
+import modelo.Node;
 import modelo.NodoDataCenter;
 
 import org.apache.commons.collections15.Factory;
@@ -20,78 +20,83 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.EdgeShape;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
-public class GraphViewerPanel extends VisualizationViewer<Nodo, Enlace> {
+public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5488555157025697692L;
-	
-	EditingModalGraphMouse gm;
 
-	public GraphViewerPanel(Layout<Nodo, Enlace> layout, Factory nodeFactory,
-			Factory linkFactory) {
+	EditingModalGraphMouse<Node, Link> gm;
+
+	public GraphViewerPanel(Layout<Node, Link> layout,
+			Factory<Node> nodeFactory, Factory<Link> linkFactory) {
 		super(layout);
-		
+
 		// Setup up icons for nodes
-				/*PickableVertexIconTransformer<Node> vertexIcon = new PickableVertexIconTransformer<Node>(getPickedVertexState(), null, null) {
-					public Icon transform(Node n) {	
-						
-							if (n instanceof SubstrateServer){
-								return Icons.SERVER;	
-							}else{
-								return Icons.ROUTER;
-							}
-												
-					}
-		        };*/
-		       // this.getRenderContext().setVertexIconTransformer(vertexIcon);
-		        
-		        Transformer<Nodo, String> vertexLabel = new Transformer<Nodo, String>() {
-					public String transform(Nodo n) {
-						return "" + n.getId();
-					}
-		        };
-		        
-		        Transformer<Nodo, Paint> vertexPaint = new Transformer<Nodo, Paint>() {
-					public Paint transform(Nodo n) {
-						if (n instanceof NodoDataCenter){
-							return Color.LIGHT_GRAY;	
-						}else{
-							return Color.ORANGE;
-						}
-					}
-		        };
-		        Transformer<Nodo, Shape> vertexShape = new Transformer<Nodo, Shape>() {
-					public Shape transform(Nodo n) {
-						if (n instanceof NodoDataCenter){
-							return new Rectangle(-20, -13, 40, 26);
-						}else{
-							return new Ellipse2D.Double(-13, -13, 26, 26);
-						}
-					}
-		        };
-		        
-		        this.getRenderContext().setVertexLabelTransformer(vertexLabel);
-		        this.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
-		        this.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
-		        this.getRenderContext().setVertexShapeTransformer(vertexShape);
-		        
-		        this.getRenderContext().setEdgeShapeTransformer(new EdgeShape.Line());
-		        
-		        Transformer<Enlace, String> linkLabel = new Transformer<Enlace, String>() {
-				public String transform(Enlace l) {
-					return "" + l.getBandwidth();
+		/*
+		 * PickableVertexIconTransformer<Node> vertexIcon = new
+		 * PickableVertexIconTransformer<Node>(getPickedVertexState(), null,
+		 * null) { public Icon transform(Node n) {
+		 * 
+		 * if (n instanceof SubstrateServer){ return Icons.SERVER; }else{ return
+		 * Icons.ROUTER; }
+		 * 
+		 * } };
+		 */
+		// this.getRenderContext().setVertexIconTransformer(vertexIcon);
+
+		Transformer<Node, String> vertexLabel = new Transformer<Node, String>() {
+			public String transform(Node n) {
+				
+				if (n instanceof NodoDataCenter) {
+					NodoDataCenter nd = (NodoDataCenter) n;
+					return "" + n.getId() + "cpu " + nd.getCpu();
+				} else {
+					return "" + n.getId();
 				}
-	        };
-	        this.getRenderContext().setEdgeLabelTransformer(linkLabel);
-		        
-		        gm = new EditingModalGraphMouse(this.getRenderContext(), nodeFactory, linkFactory);
-		        gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
-		        gm.remove(gm.getPopupEditingPlugin());
-		        this.setGraphMouse(gm);
-		        
-		// TODO Auto-generated constructor stub
+				
+				
+			}
+		};
+
+		Transformer<Node, Paint> vertexPaint = new Transformer<Node, Paint>() {
+			public Paint transform(Node n) {
+				if (n instanceof NodoDataCenter) {
+					return Color.LIGHT_GRAY;
+				} else {
+					return Color.ORANGE;
+				}
+			}
+		};
+		Transformer<Node, Shape> vertexShape = new Transformer<Node, Shape>() {
+			public Shape transform(Node n) {
+				if (n instanceof NodoDataCenter) {
+					return new Rectangle(-20, -13, 40, 26);
+				} else {
+					return new Ellipse2D.Double(-13, -13, 26, 26);
+				}
+			}
+		};
+
+		this.getRenderContext().setVertexLabelTransformer(vertexLabel);
+		this.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
+		this.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
+		this.getRenderContext().setVertexShapeTransformer(vertexShape);
+
+		this.getRenderContext().setEdgeShapeTransformer(
+				new EdgeShape.Line<Node, Link>());
+
+		Transformer<Link, String> linkLabel = new Transformer<Link, String>() {
+			public String transform(Link l) {
+				return "" + l.getBandwidth();
+			}
+		};
+		this.getRenderContext().setEdgeLabelTransformer(linkLabel);
+
+		gm = new EditingModalGraphMouse<Node, Link>(this.getRenderContext(),
+				nodeFactory, linkFactory);
+		gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
+		gm.remove(gm.getPopupEditingPlugin());
+		this.setGraphMouse(gm);
+
 	}
 
 }

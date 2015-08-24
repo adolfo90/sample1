@@ -1,6 +1,6 @@
 package modelo;
 
-public class NodoIntermedio extends Nodo {
+public class NodoIntermedio extends Node {
 
 	public NodoIntermedio(int id) {
 		super(id);

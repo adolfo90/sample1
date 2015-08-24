@@ -1,11 +1,11 @@
 package modelo;
 
-public class Enlace {
+public class Link {
 
 	protected int id;
 	protected int bandwidth;
 
-	public Enlace(int id, int bandwidth) {
+	public Link(int id, int bandwidth) {
 		this.id = id;
 		this.bandwidth = bandwidth;
 
@@ -26,6 +26,5 @@ public class Enlace {
 	public void setBandwidth(int bandwidth) {
 		this.bandwidth = bandwidth;
 	}
-	
-	
+
 }

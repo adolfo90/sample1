@@ -15,10 +15,10 @@ import javax.swing.JTable;
 import javax.swing.JToolBar;
 
 import modelo.DefaultSubstrates;
-import modelo.Enlace;
-import modelo.Red;
-import modelo.Nodo;
-import modelo.Simulator;
+import modelo.Link;
+import modelo.Network;
+import modelo.Node;
+import modelo.Simulador;
 import edu.uci.ics.jung.algorithms.layout.FRLayout2;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 
@@ -40,15 +40,15 @@ public class App extends JFrame {
 	private JToolBar simulatorToolBar;
 	private GraphViewerPanel graphViewerPanel;
 
-	private Simulator simulator;
+	private Simulador simulator;
 
 	public App() {
 
-		simulator = new Simulator();
+		simulator = new Simulador();
 		simulator.addSubstrate(DefaultSubstrates
 				.constructDefault("Red1"));
 		this.setSize(1200, 700);
-		this.setTitle("Simulador");
+		this.setTitle("Simulador de Redes");
 		this.setLocationRelativeTo(null);
 		this.setContentPane(getSimulatorContentPane());
 
@@ -134,7 +134,7 @@ public class App extends JFrame {
 		if (substratesTable == null) {
 			String col[] = { "Nombre", "Nodos", "Enlaces" };
 			substratesTableModel = new SubstratesTableModel(col, 0);
-			for (Red s : simulator.getSubstrates()) {
+			for (Network s : simulator.getSubstrates()) {
 				substratesTableModel.addRow(new Object[] { s.getId(), s.getGraph().getVertexCount(), s.getGraph().getEdgeCount() });
 			}
 			substratesTable = new JTable(substratesTableModel);
@@ -144,7 +144,7 @@ public class App extends JFrame {
 					if (e.getClickCount() == 2) {
 						JTable target = (JTable) e.getSource();
 						int row = target.getSelectedRow();
-						Red s = simulator.getSubstrates().get(row);
+						Network s = simulator.getSubstrates().get(row);
 
 						int index = graphViewerTabbedPane.indexOfTab(s.getId());
 						if (index == -1) {
@@ -167,14 +167,12 @@ public class App extends JFrame {
 		return substratesTable;
 	}
 	
-	private GraphViewerPanel getGraphViewerPanel(Red net) {
+	private GraphViewerPanel getGraphViewerPanel(Network net) {
 		
-		Layout<Nodo, Enlace> layout = new FRLayout2<Nodo, Enlace>(net.getGraph());
-		
+		Layout<Node, Link> layout = new FRLayout2<Node, Link>(net.getGraph());
 		graphViewerPanel = new GraphViewerPanel(layout, net.getNodeFactory(), net.getLinkFactory());
 		graphViewerPanel.setBackground(Color.WHITE);
 
-		
 		return graphViewerPanel; 
 	}
 }

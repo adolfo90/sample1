@@ -1,10 +1,10 @@
 package modelo;
 
-public class Nodo {
+public class Node {
 
 	protected int id;
 
-	public Nodo(int id) {
+	public Node(int id) {
 		this.id = id;
 	}
 
