@@ -19,6 +19,7 @@ import modelo.Link;
 import modelo.Network;
 import modelo.Node;
 import modelo.Simulador;
+import modelo.SubstratoPruebaBase;
 import edu.uci.ics.jung.algorithms.layout.FRLayout2;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 
@@ -45,8 +46,8 @@ public class App extends JFrame {
 	public App() {
 
 		simulator = new Simulador();
-		simulator.addSubstrate(DefaultSubstrates
-				.constructDefault("Red1"));
+		//simulator.addSubstrate(DefaultSubstrates.constructDefault("Red1"));
+		simulator.addSubstrate(SubstratoPruebaBase.construirSubstrato("RedPrueba"));
 		this.setSize(1200, 700);
 		this.setTitle("Simulador de Redes");
 		this.setLocationRelativeTo(null);
