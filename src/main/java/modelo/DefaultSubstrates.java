@@ -12,6 +12,8 @@ public class DefaultSubstrates {
 
 		NodoDataCenter nodo1 = new NodoDataCenter(81);
 		nodo1.setCpu(3);
+		nodo1.setAlmacenamiento(5);
+		nodo1.setMemoria(2);
 
 		NodoIntermedio nodo2 = new NodoIntermedio(82);
 		
@@ -29,6 +31,10 @@ public class DefaultSubstrates {
 		
 		
 		NodoDataCenter nodo9 = new NodoDataCenter(59);
+		nodo9.setCpu(3);
+		nodo9.setAlmacenamiento(5);
+		nodo9.setMemoria(2);
+
 		
 		Link enlace1 = new Link(2,100);
 		Link enlace2 = new Link(3,100);

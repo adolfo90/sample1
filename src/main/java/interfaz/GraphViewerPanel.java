@@ -30,30 +30,11 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 			Factory<Node> nodeFactory, Factory<Link> linkFactory) {
 		super(layout);
 
-		// Setup up icons for nodes
-		/*
-		 * PickableVertexIconTransformer<Node> vertexIcon = new
-		 * PickableVertexIconTransformer<Node>(getPickedVertexState(), null,
-		 * null) { public Icon transform(Node n) {
-		 * 
-		 * if (n instanceof SubstrateServer){ return Icons.SERVER; }else{ return
-		 * Icons.ROUTER; }
-		 * 
-		 * } };
-		 */
-		// this.getRenderContext().setVertexIconTransformer(vertexIcon);
-
 		Transformer<Node, String> vertexLabel = new Transformer<Node, String>() {
 			public String transform(Node n) {
-				
-				if (n instanceof NodoDataCenter) {
-					NodoDataCenter nd = (NodoDataCenter) n;
-					return "" + n.getId() + "cpu " + nd.getCpu();
-				} else {
-					return "" + n.getId();
-				}
-				
-				
+
+				return "" + n.getId();
+
 			}
 		};
 
@@ -69,7 +50,7 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 		Transformer<Node, Shape> vertexShape = new Transformer<Node, Shape>() {
 			public Shape transform(Node n) {
 				if (n instanceof NodoDataCenter) {
-					return new Rectangle(-20, -13, 40, 26);
+					return new Rectangle(-20, -16, 40, 32);
 				} else {
 					return new Ellipse2D.Double(-13, -13, 26, 26);
 				}
@@ -86,7 +67,7 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 
 		Transformer<Link, String> linkLabel = new Transformer<Link, String>() {
 			public String transform(Link l) {
-				return "" + l.getBandwidth();
+				return "" + l.getId();
 			}
 		};
 		this.getRenderContext().setEdgeLabelTransformer(linkLabel);
