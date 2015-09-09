@@ -39,7 +39,7 @@ public class App extends JFrame {
 	private JTable substratesTable;
 	private SubstratesTableModel substratesTableModel;
 	private JToolBar simulatorToolBar;
-	private GraphViewerPanel graphViewerPanel;
+	private Visor graphViewerPanel;
 
 	private Simulador simulator;
 
@@ -150,7 +150,7 @@ public class App extends JFrame {
 						int index = graphViewerTabbedPane.indexOfTab(s.getId());
 						if (index == -1) {
 							
-							GraphViewerPanel gv = getGraphViewerPanel(s);
+							Visor gv = getGraphViewerPanel(s);
 							JPanel pane = new JPanel(new BorderLayout());
 							pane.add(gv, BorderLayout.CENTER);
 							graphViewerTabbedPane.addTab(s.getId(), null, pane, null);
@@ -168,10 +168,10 @@ public class App extends JFrame {
 		return substratesTable;
 	}
 	
-	private GraphViewerPanel getGraphViewerPanel(Network net) {
+	private Visor getGraphViewerPanel(Network net) {
 		
 		Layout<Node, Link> layout = new FRLayout2<Node, Link>(net.getGraph());
-		graphViewerPanel = new GraphViewerPanel(layout, net.getNodeFactory(), net.getLinkFactory());
+		graphViewerPanel = new Visor(layout, net.getNodeFactory(), net.getLinkFactory());
 		graphViewerPanel.setBackground(Color.WHITE);
 
 		return graphViewerPanel; 

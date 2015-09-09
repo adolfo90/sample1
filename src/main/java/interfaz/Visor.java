@@ -20,13 +20,13 @@ import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.EdgeShape;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
-public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
+public class Visor extends VisualizationViewer<Node, Link> {
 
 	private static final long serialVersionUID = -5488555157025697692L;
 
 	EditingModalGraphMouse<Node, Link> gm;
 
-	public GraphViewerPanel(Layout<Node, Link> layout,
+	public Visor(Layout<Node, Link> layout,
 			Factory<Node> nodeFactory, Factory<Link> linkFactory) {
 		super(layout);
 
@@ -75,7 +75,8 @@ public class GraphViewerPanel extends VisualizationViewer<Node, Link> {
 		gm = new EditingModalGraphMouse<Node, Link>(this.getRenderContext(),
 				nodeFactory, linkFactory);
 		gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
-		gm.remove(gm.getPopupEditingPlugin());
+	
+		//gm.remove(gm.getPopupEditingPlugin());
 		this.setGraphMouse(gm);
 
 	}
