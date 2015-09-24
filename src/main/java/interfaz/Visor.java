@@ -26,8 +26,8 @@ public class Visor extends VisualizationViewer<Node, Link> {
 
 	EditingModalGraphMouse<Node, Link> gm;
 
-	public Visor(Layout<Node, Link> layout,
-			Factory<Node> nodeFactory, Factory<Link> linkFactory) {
+	public Visor(Layout<Node, Link> layout, Factory<Node> nodeFactory,
+			Factory<Link> linkFactory) {
 		super(layout);
 
 		Transformer<Node, String> vertexLabel = new Transformer<Node, String>() {
@@ -47,10 +47,11 @@ public class Visor extends VisualizationViewer<Node, Link> {
 				}
 			}
 		};
+		
 		Transformer<Node, Shape> vertexShape = new Transformer<Node, Shape>() {
 			public Shape transform(Node n) {
 				if (n instanceof NodoDataCenter) {
-					return new Rectangle(-20, -16, 40, 32);
+					return new Rectangle(-20, -15, 40, 30);
 				} else {
 					return new Ellipse2D.Double(-13, -13, 26, 26);
 				}
@@ -74,9 +75,9 @@ public class Visor extends VisualizationViewer<Node, Link> {
 
 		gm = new EditingModalGraphMouse<Node, Link>(this.getRenderContext(),
 				nodeFactory, linkFactory);
-		gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
-	
-		//gm.remove(gm.getPopupEditingPlugin());
+		gm.setMode(ModalGraphMouse.Mode.PICKING);
+
+		// gm.remove(gm.getPopupEditingPlugin());
 		this.setGraphMouse(gm);
 
 	}
