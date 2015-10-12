@@ -7,6 +7,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -14,7 +16,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 
-import modelo.DefaultSubstrates;
 import modelo.Link;
 import modelo.Network;
 import modelo.Node;
@@ -46,8 +47,9 @@ public class App extends JFrame {
 	public App() {
 
 		simulator = new Simulador();
-		//simulator.addSubstrate(DefaultSubstrates.constructDefault("Red1"));
-		simulator.addSubstrate(SubstratoPruebaBase.construirSubstrato("RedPrueba"));
+		// simulator.addSubstrate(DefaultSubstrates.constructDefault("Red1"));
+		simulator.addSubstrate(SubstratoPruebaBase
+				.construirSubstrato("RedPrueba"));
 		this.setSize(1200, 700);
 		this.setTitle("Simulador de Redes");
 		this.setLocationRelativeTo(null);
@@ -100,8 +102,8 @@ public class App extends JFrame {
 					getSubstratesScrollPane(), null);
 			simulatorTabbedPane.addTab("Peticiones", null,
 					getRequestsScrollPane(), null);
-//			simulatorTabbedPane.addTab("Algoritmos", null,
-//					getAlgorithmsScrollPane(), null);
+			// simulatorTabbedPane.addTab("Algoritmos", null,
+			// getAlgorithmsScrollPane(), null);
 		}
 		return simulatorTabbedPane;
 	}
@@ -136,7 +138,9 @@ public class App extends JFrame {
 			String col[] = { "Nombre", "Nodos", "Enlaces" };
 			substratesTableModel = new SubstratesTableModel(col, 0);
 			for (Network s : simulator.getSubstrates()) {
-				substratesTableModel.addRow(new Object[] { s.getId(), s.getGraph().getVertexCount(), s.getGraph().getEdgeCount() });
+				substratesTableModel.addRow(new Object[] { s.getId(),
+						s.getGraph().getVertexCount(),
+						s.getGraph().getEdgeCount() });
 			}
 			substratesTable = new JTable(substratesTableModel);
 
@@ -149,13 +153,20 @@ public class App extends JFrame {
 
 						int index = graphViewerTabbedPane.indexOfTab(s.getId());
 						if (index == -1) {
-							
+
 							Visor gv = getGraphViewerPanel(s);
 							JPanel pane = new JPanel(new BorderLayout());
+							JMenuBar menuBar = new JMenuBar();
+							JMenu modeMenu = gv.getGm().getModeMenu();
+							modeMenu.setText("Modo");
+					        modeMenu.setPreferredSize(new Dimension(90,25)); // Change the size so I can see the text
+					        menuBar.add(modeMenu);
 							pane.add(gv, BorderLayout.CENTER);
-							graphViewerTabbedPane.addTab(s.getId(), null, pane, null);
+							pane.add(menuBar, BorderLayout.SOUTH);
+							graphViewerTabbedPane.addTab(s.getId(), null, pane,
+									null);
 							graphViewerTabbedPane.setSelectedComponent(pane);
-							
+
 						} else {
 							graphViewerTabbedPane.setSelectedIndex(index);
 						}
@@ -167,13 +178,14 @@ public class App extends JFrame {
 		}
 		return substratesTable;
 	}
-	
+
 	private Visor getGraphViewerPanel(Network net) {
-		
+
 		Layout<Node, Link> layout = new FRLayout2<Node, Link>(net.getGraph());
-		graphViewerPanel = new Visor(layout, net.getNodeFactory(), net.getLinkFactory());
+		graphViewerPanel = new Visor(layout, net.getNodeFactory(),
+				net.getLinkFactory());
 		graphViewerPanel.setBackground(Color.WHITE);
 
-		return graphViewerPanel; 
+		return graphViewerPanel;
 	}
 }
