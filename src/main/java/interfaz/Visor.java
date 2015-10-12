@@ -46,6 +46,7 @@ public class Visor extends VisualizationViewer<Node, Link> {
 				}
 			}
 		};
+		
 		Transformer<Node, Shape> vertexShape = new Transformer<Node, Shape>() {
 			public Shape transform(Node n) {
 				if (n instanceof NodoDataCenter) {
