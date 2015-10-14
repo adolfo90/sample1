@@ -158,8 +158,8 @@ public class App extends JFrame {
 							JPanel pane = new JPanel(new BorderLayout());
 							JMenuBar menuBar = new JMenuBar();
 							JMenu modeMenu = gv.getGm().getModeMenu();
-							modeMenu.setText("Modo");
-					        modeMenu.setPreferredSize(new Dimension(90,25)); // Change the size so I can see the text
+							modeMenu.setText("Visualización");
+					        modeMenu.setPreferredSize(new Dimension(110,20)); // Change the size so I can see the text
 					        menuBar.add(modeMenu);
 							pane.add(gv, BorderLayout.CENTER);
 							pane.add(menuBar, BorderLayout.SOUTH);

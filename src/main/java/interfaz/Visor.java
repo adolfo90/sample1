@@ -1,5 +1,6 @@
 package interfaz;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Paint;
 import java.awt.Shape;
@@ -11,12 +12,15 @@ import modelo.NodoDataCenter;
 
 import org.apache.commons.collections15.Factory;
 import org.apache.commons.collections15.Transformer;
+import org.apache.commons.collections15.functors.ConstantTransformer;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 import edu.uci.ics.jung.visualization.control.EditingModalGraphMouse;
 import edu.uci.ics.jung.visualization.control.ModalGraphMouse;
 import edu.uci.ics.jung.visualization.decorators.EdgeShape;
+import edu.uci.ics.jung.visualization.decorators.PickableEdgePaintTransformer;
+import edu.uci.ics.jung.visualization.decorators.PickableVertexPaintTransformer;
 import edu.uci.ics.jung.visualization.renderers.Renderer.VertexLabel.Position;
 
 public class Visor extends VisualizationViewer<Node, Link> {
@@ -57,10 +61,13 @@ public class Visor extends VisualizationViewer<Node, Link> {
 			}
 		};
 
-		this.getRenderContext().setVertexLabelTransformer(vertexLabel);
+		//this.getRenderContext().setVertexLabelTransformer(vertexLabel);
 		this.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 		this.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
 		this.getRenderContext().setVertexShapeTransformer(vertexShape);
+		
+		//DefaultVertexLabelRenderer vertexLabelRenderer=new DefaultVertexLabelRenderer(Color.RED);
+
 
 		this.getRenderContext().setEdgeShapeTransformer(
 				new EdgeShape.Line<Node, Link>());
@@ -70,12 +77,17 @@ public class Visor extends VisualizationViewer<Node, Link> {
 				return "" + l.getId();
 			}
 		};
-		this.getRenderContext().setEdgeLabelTransformer(linkLabel);
+		//this.getRenderContext().setEdgeLabelTransformer(linkLabel);
+		this.getRenderContext().setEdgeDrawPaintTransformer(new PickableEdgePaintTransformer(getPickedEdgeState(), Color.black, Color.red));
+		this.getRenderContext().setVertexDrawPaintTransformer(new PickableVertexPaintTransformer(getPickedVertexState(), Color.black, Color.red));
 
+		this.getRenderContext().setEdgeStrokeTransformer(new ConstantTransformer(new BasicStroke(1.8f)));
+		this.getRenderContext().setVertexStrokeTransformer(new ConstantTransformer(new BasicStroke(1.8f)));
+		
 		gm = new EditingModalGraphMouse<Node, Link>(this.getRenderContext(),
 				nodeFactory, linkFactory);
 		gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
-
+		
 		// gm.remove(gm.getPopupEditingPlugin());
 		this.setGraphMouse(gm);
 
