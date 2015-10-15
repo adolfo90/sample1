@@ -29,6 +29,8 @@ public class Visor extends VisualizationViewer<Node, Link> {
 
 	EditingModalGraphMouse<Node, Link> gm;
 
+	MyEditingPopupGraphMousePlugin<Node, Link> mousePlugin;
+
 	public Visor(Layout<Node, Link> layout, Factory<Node> nodeFactory,
 			Factory<Link> linkFactory) {
 		super(layout);
@@ -50,7 +52,7 @@ public class Visor extends VisualizationViewer<Node, Link> {
 				}
 			}
 		};
-		
+
 		Transformer<Node, Shape> vertexShape = new Transformer<Node, Shape>() {
 			public Shape transform(Node n) {
 				if (n instanceof NodoDataCenter) {
@@ -61,13 +63,13 @@ public class Visor extends VisualizationViewer<Node, Link> {
 			}
 		};
 
-		//this.getRenderContext().setVertexLabelTransformer(vertexLabel);
+		// this.getRenderContext().setVertexLabelTransformer(vertexLabel);
 		this.getRenderer().getVertexLabelRenderer().setPosition(Position.CNTR);
 		this.getRenderContext().setVertexFillPaintTransformer(vertexPaint);
 		this.getRenderContext().setVertexShapeTransformer(vertexShape);
-		
-		//DefaultVertexLabelRenderer vertexLabelRenderer=new DefaultVertexLabelRenderer(Color.RED);
 
+		// DefaultVertexLabelRenderer vertexLabelRenderer=new
+		// DefaultVertexLabelRenderer(Color.RED);
 
 		this.getRenderContext().setEdgeShapeTransformer(
 				new EdgeShape.Line<Node, Link>());
@@ -77,18 +79,27 @@ public class Visor extends VisualizationViewer<Node, Link> {
 				return "" + l.getId();
 			}
 		};
-		//this.getRenderContext().setEdgeLabelTransformer(linkLabel);
-		this.getRenderContext().setEdgeDrawPaintTransformer(new PickableEdgePaintTransformer(getPickedEdgeState(), Color.black, Color.red));
-		this.getRenderContext().setVertexDrawPaintTransformer(new PickableVertexPaintTransformer(getPickedVertexState(), Color.black, Color.red));
+		// this.getRenderContext().setEdgeLabelTransformer(linkLabel);
+		this.getRenderContext().setEdgeDrawPaintTransformer(
+				new PickableEdgePaintTransformer(getPickedEdgeState(),
+						Color.black, Color.red));
+		this.getRenderContext().setVertexDrawPaintTransformer(
+				new PickableVertexPaintTransformer(getPickedVertexState(),
+						Color.black, Color.red));
 
-		this.getRenderContext().setEdgeStrokeTransformer(new ConstantTransformer(new BasicStroke(1.8f)));
-		this.getRenderContext().setVertexStrokeTransformer(new ConstantTransformer(new BasicStroke(1.8f)));
-		
+		this.getRenderContext().setEdgeStrokeTransformer(
+				new ConstantTransformer(new BasicStroke(1.8f)));
+		this.getRenderContext().setVertexStrokeTransformer(
+				new ConstantTransformer(new BasicStroke(1.8f)));
+
 		gm = new EditingModalGraphMouse<Node, Link>(this.getRenderContext(),
 				nodeFactory, linkFactory);
 		gm.setMode(ModalGraphMouse.Mode.TRANSFORMING);
-		
-		// gm.remove(gm.getPopupEditingPlugin());
+
+		mousePlugin = new MyEditingPopupGraphMousePlugin<>();
+
+		gm.remove(gm.getPopupEditingPlugin());
+		gm.add(mousePlugin);
 		this.setGraphMouse(gm);
 
 	}
